@@ -1,9 +1,9 @@
 /*
- * UseCase2PalindromeCheckerApp.java
+ * UseCase3PalindromeCheckerApp.java
  *
- * UC2: Print a Hardcoded Palindrome Result
- * Objective: Check whether a hardcoded string is a palindrome
- * and display the result.
+ * UC3: Palindrome Check Using String Reverse
+ * Objective: Check whether a string is a palindrome
+ * by reversing it using a for loop.
  */
 
 public class PalindromeCheckerApp {
@@ -11,26 +11,30 @@ public class PalindromeCheckerApp {
     // Main Method - Entry point of the Java application
     public static void main(String[] args) {
 
-        // Program starts
-        System.out.println("===== Palindrome Checker App - UC2 =====");
+        System.out.println("===== Palindrome Checker App - UC3 =====");
 
-        // Hardcoded String (String Literal stored in String Pool)
-        String word = "madam";
+        // Original String
+        String original = "level";
 
-        // Display the word being checked
-        System.out.println("Checking word: " + word);
+        // Variable to store reversed string
+        String reversed = "";
 
-        // Reverse the string
-        String reversed = new StringBuilder(word).reverse().toString();
-
-        // Conditional Statement (if-else)
-        if (word.equals(reversed)) {
-            System.out.println("Result: The word \"" + word + "\" is a Palindrome.");
-        } else {
-            System.out.println("Result: The word \"" + word + "\" is NOT a Palindrome.");
+        // Loop (for loop) - iterate in reverse order
+        for (int i = original.length() - 1; i >= 0; i--) {
+            reversed = reversed + original.charAt(i);  // String Concatenation
         }
 
-        // Program exits
-        System.out.println("Program execution completed.");
+        // Display reversed string
+        System.out.println("Original String : " + original);
+        System.out.println("Reversed String : " + reversed);
+
+        // Compare using equals() method
+        if (original.equals(reversed)) {
+            System.out.println("Result: The string \"" + original + "\" is a Palindrome.");
+        } else {
+            System.out.println("Result: The string \"" + original + "\" is NOT a Palindrome.");
+        }
+
+        System.out.println("Program Completed.");
     }
 }
