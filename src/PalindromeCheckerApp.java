@@ -1,61 +1,46 @@
-/*
- * UseCase6PalindromeCheckerApp.java
- *
- * UC6: Queue + Stack Based Palindrome Check
- * Objective: Demonstrate FIFO vs LIFO behavior
- * and validate palindrome using both data structures.
- */
-
-import java.util.Stack;
-import java.util.Queue;
+import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
-    // Main Method - Entry point of the Java application
     public static void main(String[] args) {
 
-        System.out.println("===== Palindrome Checker App - UC6 =====");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a string to check for palindrome:");
+        String input = scanner.nextLine();
 
-        // Original String
-        String original = "level";
+        // Convert input to lowercase for case-insensitive comparison
+        input = input.toLowerCase();
 
-        // Create Stack (LIFO)
-        Stack<Character> stack = new Stack<>();
+        // Create Deque
+        Deque<Character> deque = new LinkedList<>();
 
-        // Create Queue (FIFO)
-        Queue<Character> queue = new LinkedList<>();
-
-        // Insert characters into both Stack and Queue
-        for (int i = 0; i < original.length(); i++) {
-            char ch = original.charAt(i);
-            stack.push(ch);      // LIFO
-            queue.add(ch);       // FIFO (Enqueue)
+        // Insert characters into Deque
+        for (int i = 0; i < input.length(); i++) {
+            deque.addLast(input.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue (queue) with pop (stack)
-        while (!stack.isEmpty()) {
+        // Compare front and rear characters
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
 
-            char fromQueue = queue.remove();  // Dequeue (FIFO)
-            char fromStack = stack.pop();     // Pop (LIFO)
-
-            if (fromQueue != fromStack) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Display Result
-        System.out.println("Original String: " + original);
-
+        // Output result
         if (isPalindrome) {
-            System.out.println("Result: \"" + original + "\" is a Palindrome.");
+            System.out.println("The given string is a Palindrome.");
         } else {
-            System.out.println("Result: \"" + original + "\" is NOT a Palindrome.");
+            System.out.println("The given string is NOT a Palindrome.");
         }
 
-        System.out.println("Program Completed.");
+        scanner.close();
     }
 }
