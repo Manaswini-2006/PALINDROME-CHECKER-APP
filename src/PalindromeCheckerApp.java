@@ -1,43 +1,43 @@
 /*
- * UseCase4PalindromeCheckerApp.java
+ * UseCase5PalindromeCheckerApp.java
  *
- * UC4: Character Array Based Palindrome Check
- * Objective: Convert string to char[] and compare characters
- * using the two-pointer technique.
+ * UC5: Stack-Based Palindrome Checker
+ * Objective: Use Stack (LIFO) to validate palindrome.
  */
+
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
     // Main Method - Entry point of the Java application
     public static void main(String[] args) {
 
-        System.out.println("===== Palindrome Checker App - UC4 =====");
+        System.out.println("===== Palindrome Checker App - UC5 =====");
 
         // Original String
-        String original = "radar";
+        String original = "madam";
 
-        // Convert String to Character Array (char[])
-        char[] characters = original.toCharArray();
+        // Create Stack (Data Structure)
+        Stack<Character> stack = new Stack<>();
 
-        // Two-pointer approach
-        int start = 0;
-        int end = characters.length - 1;
+        // Push Operation - Insert characters into stack
+        for (int i = 0; i < original.length(); i++) {
+            stack.push(original.charAt(i));
+        }
 
+        // Pop Operation & Comparison
         boolean isPalindrome = true;
 
-        while (start < end) {
+        for (int i = 0; i < original.length(); i++) {
+            char poppedChar = stack.pop();  // Removes in reverse order
 
-            // Compare characters at start and end index
-            if (characters[start] != characters[end]) {
+            if (original.charAt(i) != poppedChar) {
                 isPalindrome = false;
                 break;
             }
-
-            start++;
-            end--;
         }
 
-        // Display result
+        // Display Result
         System.out.println("Original String: " + original);
 
         if (isPalindrome) {
